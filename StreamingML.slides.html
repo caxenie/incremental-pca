@@ -13310,7 +13310,14 @@ $$ \frac{p_{te}(x_i^{tr})}{p_{tr}(x_i^{tr})}$$<p>Basically, <strong>the expectat
 <li>sequential access to data samples (i.e. once an observation has been processed, it cannot be retrieved);</li>
 <li>unpredictable, dependent, and not identical distributed observations.</li>
 </ul>
-<p><strong>Learning from streams of nonstationary data</strong> lives under the following constraints[Sayed-Mouchaweh, 2016]:</p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Concept-drift">Concept drift<a class="anchor-link" href="#Concept-drift">&#182;</a></h2><p><strong>Learning from streams of nonstationary data</strong> lives under the following constraints[Sayed-Mouchaweh, 2016]:</p>
 <ul>
 <li><strong>Random access to observations</strong> is <strong>not feasible</strong>, or it has high costs (i.e. dataset not a priori available or too large).</li>
 <li><strong>Memory is small</strong> with respect to the size of data.</li>
@@ -13478,7 +13485,7 @@ $$ \frac{p_{te}(x_i^{tr})}{p_{tr}(x_i^{tr})}$$<p>Basically, <strong>the expectat
 </li>
 <li><p><strong>incremental PCA model</strong> and leveraging <strong>stream dimensionality reduction</strong> on a distributed system,</p>
 </li>
-<li><p>computation of <strong>statistical features</strong> and <strong>neural learning rules</strong></p>
+<li><p>computation of <strong>statistical features</strong> and <strong>neural learning rules</strong>,</p>
 </li>
 <li><p><strong>guaranteeing limited or programmable resource</strong> allocation (i.e. memory and disk),</p>
 </li>
@@ -13508,14 +13515,12 @@ $$ \frac{p_{te}(x_i^{tr})}{p_{tr}(x_i^{tr})}$$<p>Basically, <strong>the expectat
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Standard PCA implementation (QR-decomposition based)</span>
+<span class="c1"># The gain vector gamma determines the weight placed on the new data in updating each principal</span>
+<span class="c1"># component. The first coefficient of gamma corresponds to the first principal component, etc. It can</span>
+<span class="c1"># be specified as a single positive number (which is recycled by the function) or as a vector of length</span>
+<span class="c1"># ncol(U). For larger values of gamma, more weight is placed on x and less on U. A common choice</span>
+<span class="c1"># for (the components of) gamma is of the form c/n, with n the sample size and c a suitable positive constant.</span>
 <span class="n">StreamPCAModelsState</span> <span class="n">StandardPCA</span> <span class="p">(</span><span class="n">StreamPCAModelsState</span> <span class="n">state</span><span class="p">,</span> <span class="n">SimpleMatrix</span> <span class="n">x</span><span class="p">){</span>
-
-        <span class="o">//</span>        <span class="n">The</span> <span class="n">gain</span> <span class="n">vector</span> <span class="n">gamma</span> <span class="n">determines</span> <span class="n">the</span> <span class="n">weight</span> <span class="n">placed</span> <span class="n">on</span> <span class="n">the</span> <span class="n">new</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">updating</span> <span class="n">each</span> <span class="n">principal</span>
-        <span class="o">//</span>        <span class="n">component</span><span class="o">.</span> <span class="n">The</span> <span class="n">first</span> <span class="n">coefficient</span> <span class="n">of</span> <span class="n">gamma</span> <span class="n">corresponds</span> <span class="n">to</span> <span class="n">the</span> <span class="n">first</span> <span class="n">principal</span> <span class="n">component</span><span class="p">,</span> <span class="n">etc</span><span class="o">.</span> <span class="n">It</span> <span class="n">can</span>
-        <span class="o">//</span>        <span class="n">be</span> <span class="n">specified</span> <span class="k">as</span> <span class="n">a</span> <span class="n">single</span> <span class="n">positive</span> <span class="n">number</span> <span class="p">(</span><span class="n">which</span> <span class="ow">is</span> <span class="n">recycled</span> <span class="n">by</span> <span class="n">the</span> <span class="n">function</span><span class="p">)</span> <span class="ow">or</span> <span class="k">as</span> <span class="n">a</span> <span class="n">vector</span> <span class="n">of</span> <span class="n">length</span>
-        <span class="o">//</span>        <span class="n">ncol</span><span class="p">(</span><span class="n">U</span><span class="p">)</span><span class="o">.</span> <span class="n">For</span> <span class="n">larger</span> <span class="n">values</span> <span class="n">of</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">more</span> <span class="n">weight</span> <span class="ow">is</span> <span class="n">placed</span> <span class="n">on</span> <span class="n">x</span> <span class="ow">and</span> <span class="n">less</span> <span class="n">on</span> <span class="n">U</span><span class="o">.</span> <span class="n">A</span> <span class="n">common</span> <span class="n">choice</span>
-        <span class="o">//</span>        <span class="k">for</span> <span class="p">(</span><span class="n">the</span> <span class="n">components</span> <span class="n">of</span><span class="p">)</span> <span class="n">gamma</span> <span class="ow">is</span> <span class="n">of</span> <span class="n">the</span> <span class="n">form</span> <span class="n">c</span><span class="o">/</span><span class="n">n</span><span class="p">,</span> <span class="k">with</span> <span class="n">n</span> <span class="n">the</span> <span class="n">sample</span> <span class="n">size</span> <span class="ow">and</span> <span class="n">c</span> <span class="n">a</span> <span class="n">suitable</span> <span class="n">positive</span>
-        <span class="o">//</span>        <span class="n">constant</span><span class="o">.</span>
 
         <span class="o">//</span> <span class="n">recover</span> <span class="n">state</span>
         <span class="n">SimpleMatrix</span> <span class="k">lambda</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">getLambda</span><span class="p">();</span>
@@ -13546,7 +13551,7 @@ $$ \frac{p_{te}(x_i^{tr})}{p_{tr}(x_i^{tr})}$$<p>Basically, <strong>the expectat
         <span class="n">SimpleMatrix</span> <span class="n">increment</span> <span class="o">=</span> <span class="n">evidence</span><span class="o">.</span><span class="n">mult</span><span class="p">(</span><span class="n">gammaDiag</span><span class="p">);</span>
         <span class="n">Qupd</span> <span class="o">=</span> <span class="n">Qupd</span><span class="o">.</span><span class="n">plus</span><span class="p">(</span><span class="n">increment</span><span class="p">);</span>
 
-        <span class="o">//</span> <span class="n">DECOMPOSITION</span>
+        <span class="o">//</span> <span class="n">decomposition</span>
         <span class="n">QRDecomposition</span><span class="o">&lt;</span><span class="n">DMatrixRMaj</span><span class="o">&gt;</span> <span class="n">qrDecomp</span> <span class="o">=</span> <span class="n">DecompositionFactory_DDRM</span><span class="o">.</span><span class="n">qr</span><span class="p">(</span><span class="n">Qupd</span><span class="o">.</span><span class="n">numRows</span><span class="p">(),</span> <span class="n">Qupd</span><span class="o">.</span><span class="n">numCols</span><span class="p">());</span>
         <span class="n">qrDecomp</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">Qupd</span><span class="o">.</span><span class="n">getMatrix</span><span class="p">());</span>
         <span class="n">W</span> <span class="o">=</span> <span class="n">SimpleMatrix</span><span class="o">.</span><span class="n">wrap</span><span class="p">(</span><span class="n">qrDecomp</span><span class="o">.</span><span class="n">getQ</span><span class="p">(</span><span class="n">null</span><span class="p">,</span> <span class="n">true</span><span class="p">));</span>
@@ -13566,7 +13571,7 @@ $$ \frac{p_{te}(x_i^{tr})}{p_{tr}(x_i^{tr})}$$<p>Basically, <strong>the expectat
 </div>
 </div>
 
-</div></section><section>
+</div></section></section><section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
@@ -13603,21 +13608,20 @@ $$ \frac{p_{te}(x_i^{tr})}{p_{tr}(x_i^{tr})}$$<p>Basically, <strong>the expectat
 </div>
 </div>
 
-</div><div class="fragment">
+</div></section></section><section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Neural PCA implementation</span>
+<span class="c1"># The vector gamma determines the weight placed on the new data in updating each eigenvector (the</span>
+<span class="c1"># first coefficient of gamma corresponds to the first eigenvector, etc). It can be specified as a single</span>
+<span class="c1"># positive number or as a vector of length ncol(U). Larger values of gamma place more weight on</span>
+<span class="c1"># x and less on U. A common choice for (the components of) gamma is of the form c/n, with n the</span>
+<span class="c1"># sample size and c a suitable positive constant.</span>
 
 <span class="n">StreamPCAModelsState</span> <span class="n">NeuralPCA</span><span class="p">(</span><span class="n">StreamPCAModelsState</span> <span class="n">state</span><span class="p">,</span> <span class="n">SimpleMatrix</span> <span class="n">x</span><span class="p">){</span>
-
-        <span class="o">//</span>        <span class="n">The</span> <span class="n">vector</span> <span class="n">gamma</span> <span class="n">determines</span> <span class="n">the</span> <span class="n">weight</span> <span class="n">placed</span> <span class="n">on</span> <span class="n">the</span> <span class="n">new</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">updating</span> <span class="n">each</span> <span class="n">eigenvector</span> <span class="p">(</span><span class="n">the</span>
-        <span class="o">//</span>        <span class="n">first</span> <span class="n">coefficient</span> <span class="n">of</span> <span class="n">gamma</span> <span class="n">corresponds</span> <span class="n">to</span> <span class="n">the</span> <span class="n">first</span> <span class="n">eigenvector</span><span class="p">,</span> <span class="n">etc</span><span class="p">)</span><span class="o">.</span> <span class="n">It</span> <span class="n">can</span> <span class="n">be</span> <span class="n">specified</span> <span class="k">as</span> <span class="n">a</span> <span class="n">single</span>
-        <span class="o">//</span>        <span class="n">positive</span> <span class="n">number</span> <span class="ow">or</span> <span class="k">as</span> <span class="n">a</span> <span class="n">vector</span> <span class="n">of</span> <span class="n">length</span> <span class="n">ncol</span><span class="p">(</span><span class="n">U</span><span class="p">)</span><span class="o">.</span> <span class="n">Larger</span> <span class="n">values</span> <span class="n">of</span> <span class="n">gamma</span> <span class="n">place</span> <span class="n">more</span> <span class="n">weight</span> <span class="n">on</span>
-        <span class="o">//</span>        <span class="n">x</span> <span class="ow">and</span> <span class="n">less</span> <span class="n">on</span> <span class="n">U</span><span class="o">.</span> <span class="n">A</span> <span class="n">common</span> <span class="n">choice</span> <span class="k">for</span> <span class="p">(</span><span class="n">the</span> <span class="n">components</span> <span class="n">of</span><span class="p">)</span> <span class="n">gamma</span> <span class="ow">is</span> <span class="n">of</span> <span class="n">the</span> <span class="n">form</span> <span class="n">c</span><span class="o">/</span><span class="n">n</span><span class="p">,</span> <span class="k">with</span> <span class="n">n</span> <span class="n">the</span>
-        <span class="o">//</span>        <span class="n">sample</span> <span class="n">size</span> <span class="ow">and</span> <span class="n">c</span> <span class="n">a</span> <span class="n">suitable</span> <span class="n">positive</span> <span class="n">constant</span><span class="o">.</span>
 
         <span class="o">//</span> <span class="n">recover</span> <span class="n">state</span>
         <span class="n">SimpleMatrix</span> <span class="k">lambda</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">getLambda</span><span class="p">();</span>
@@ -13674,7 +13678,7 @@ $$ \frac{p_{te}(x_i^{tr})}{p_{tr}(x_i^{tr})}$$<p>Basically, <strong>the expectat
 </div>
 </div>
 
-</div></div></section></section>
+</div></section></section>
 </div>
 </div>
 
