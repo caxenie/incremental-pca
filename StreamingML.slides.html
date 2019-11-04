@@ -13202,7 +13202,7 @@ a.anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Statistical-Machine-Learning-on">Statistical Machine Learning on<a class="anchor-link" href="#Statistical-Machine-Learning-on">&#182;</a></h1><h1 id="Evolving-Non-stationary-Data-Streams">Evolving Non-stationary Data Streams<a class="anchor-link" href="#Evolving-Non-stationary-Data-Streams">&#182;</a></h1><h2 id="Intuition,-Formalism-and-Examples">Intuition, Formalism and Examples<a class="anchor-link" href="#Intuition,-Formalism-and-Examples">&#182;</a></h2>
+<h1 id="Statistical-Machine-Learning-on">Statistical Machine Learning on<a class="anchor-link" href="#Statistical-Machine-Learning-on">&#182;</a></h1><h1 id="Evolving-Non-stationary-Data-Streams">Evolving Non-stationary Data Streams<a class="anchor-link" href="#Evolving-Non-stationary-Data-Streams">&#182;</a></h1><h3 id="Intuition,-Formalism-and-Examples"><em>Intuition, Formalism and Examples</em><a class="anchor-link" href="#Intuition,-Formalism-and-Examples">&#182;</a></h3>
 </div>
 </div>
 </div></section></section><section><section>
@@ -13216,7 +13216,7 @@ a.anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Stream-Processing">Stream Processing<a class="anchor-link" href="#Stream-Processing">&#182;</a></h2><p>Given a sequence of data (a stream), a series of operations (functions) is applied to each element in the stream, in a declarative way, we specify what we want to achieve and not how [Bifet, 2010].
+<h2 id="Stream-Processing">Stream Processing<a class="anchor-link" href="#Stream-Processing">&#182;</a></h2><p>Given a sequence of data (<strong>a stream</strong>), a series of operations (functions) is applied to each element in the stream, in a declarative way, we specify <strong>what we want to achieve and not how</strong> [Bifet, 2010].
 <img src="streaming-intuition.png" alt=""></p>
 
 </div>
@@ -13227,9 +13227,9 @@ a.anchor-link {
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Stream-processing">Stream processing<a class="anchor-link" href="#Stream-processing">&#182;</a></h2><p>Data <strong>Stream Learning</strong> is more challenging than <strong>batch or offline learning</strong> [Bifet, 2010]:</p>
 <ul>
-<li>The amount of data is <strong>extremely large</strong>, potentially infinite - <strong>impossible to store</strong> it all. </li>
-<li>Only a <strong>small summary</strong> can be computed and stored, and the rest is discarded - unfeasible to go over it for processing.</li>
-<li>The <strong>speed of arrival is high</strong>, so that each particular element has to be processed in <strong>real time</strong>, and then discarded.</li>
+<li>The amount of data is <strong>extremely large</strong>, potentially infinite - <strong>impossible to store</strong> </li>
+<li>Only a <strong>small summary</strong> can be computed and stored, and the rest is discarded - unfeasible to go over it</li>
+<li>The <strong>speed of arrival is high</strong>, so that each datum has to be processed in <strong>real time</strong>, and then discarded.</li>
 <li>The <strong>distribution generating the items</strong> can <strong>change over time</strong>. </li>
 <li><strong>Data from the past</strong> may become <strong>irrelevant (or even harmful)</strong>for the current summary.</li>
 </ul>
@@ -13257,10 +13257,10 @@ a.anchor-link {
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Beyond-i.i.d">Beyond i.i.d<a class="anchor-link" href="#Beyond-i.i.d">&#182;</a></h2><ul>
 <li><strong>Traditional machine learning and data mining</strong> assume the current observed data and the future data are assumed to be i.i.d</li>
-<li><p><strong>Data samples</strong>, past and current data samples do not affect the probability for future ones.</p>
-</li>
-<li><p>Applications like:</p>
+<li><strong>Data samples</strong>, in the past and current time do not affect the probability for future ones. </li>
+</ul>
 <ul>
+<li>Yet, in applications like:<ul>
 <li>web mining, </li>
 <li>social networks, </li>
 <li>network monitoring, </li>
@@ -13269,8 +13269,10 @@ a.anchor-link {
 <li>financial forecasting, etc.</li>
 </ul>
 </li>
+</ul>
+<ul>
 <li>Data samples arrive <strong>continuously</strong>, <strong>online</strong> through unlimited streams often at <strong>high speed, over time</strong></li>
-<li>The <strong>process</strong> generating these data streams <strong>may evolve over time</strong> (evolving, nonstationarity).</li>
+<li>The <strong>process</strong> generating these data streams <strong>may evolve over time</strong> (evolving, nonstationarity)</li>
 </ul>
 
 </div>
@@ -13279,9 +13281,9 @@ a.anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Beyond-i.i.d">Beyond i.i.d<a class="anchor-link" href="#Beyond-i.i.d">&#182;</a></h2><p>In order to deal with evolving data streams, the model learnt from the streaming data must capture up-to-date trends and transient patterns in the stream.</p>
-<p>Updating the model by incorporating new examples, we must also eliminate the effects of outdated examples representing outdated concepts through one-pass.</p>
-<p>Types of change
+<h2 id="Beyond-i.i.d">Beyond i.i.d<a class="anchor-link" href="#Beyond-i.i.d">&#182;</a></h2><p>In order to deal with evolving data streams, the <strong>model learnt from the streaming data</strong> must capture up-to-date <strong>trends</strong> and <strong>transient patterns</strong> in the stream.</p>
+<p><strong>Updating the model</strong> by incorporating new examples, we must also eliminate the effects of outdated examples representing outdated concepts through <strong>one-pass</strong>.</p>
+<p><strong>Types of change</strong>
 <img src="changes-types.png" alt=""></p>
 
 </div>
@@ -13290,8 +13292,8 @@ a.anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Beyond-i.i.d">Beyond i.i.d<a class="anchor-link" href="#Beyond-i.i.d">&#182;</a></h2><p>In order to deal with evolving data streams, the model learnt from the streaming data must capture up-to-date trends and transient patterns in the stream.</p>
-<p>Typical changes in classification
+<h2 id="Beyond-i.i.d">Beyond i.i.d<a class="anchor-link" href="#Beyond-i.i.d">&#182;</a></h2><p>In order to deal with evolving data streams, the <strong>model learnt from the streaming data</strong> must capture up-to-date <strong>trends</strong> and <strong>transient patterns</strong> in the stream.</p>
+<p><strong>Typical changes in classification</strong>
 <img src="changes-sample.png" alt=""></p>
 
 </div>
@@ -13309,8 +13311,9 @@ a.anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Beyond-i.i.d">Beyond i.i.d<a class="anchor-link" href="#Beyond-i.i.d">&#182;</a></h2><p>The key idea of <strong>covariate shift adaptation</strong> is to (softly) <strong>choose informative training samples</strong> in a systematic way, by considering the <strong>importance</strong> of each training sample in the prediction of test output values, namely the ratio</p>
-$$ \frac{p_{te}(x_i^{tr})}{p_{tr}(x_i^{tr})}$$<p>Basically, <strong>the expectation</strong> of a function $f$ (i.e. regression) over $x_{te}$ can be computed by the <strong>importance-weighted expectation</strong> of the function over $x_{tr}$. Thus, the <strong>difference of distributions</strong> can be systematically <strong>adjusted</strong> by importance weighting.</p>
+<h2 id="Beyond-i.i.d">Beyond i.i.d<a class="anchor-link" href="#Beyond-i.i.d">&#182;</a></h2><p>The key idea of <strong>covariate shift adaptation</strong> is to (softly) <strong>choose informative training samples</strong> in a systematic way, by considering the <strong>importance</strong> of each <strong>training sample</strong> in the <strong>prediction of test output values</strong>, namely the ratio</p>
+$$ \frac{p_{te}(x_i^{tr})}{p_{tr}(x_i^{tr})}$$<p>Basically, <strong>the expectation</strong> of a function $f$ (i.e. regression) over $x_{te}$ can be computed by the <strong>importance-weighted expectation</strong> of the function over $x_{tr}$.</p>
+<p>Thus, the <strong>difference of distributions</strong> can be systematically <strong>adjusted</strong> by importance weighting.</p>
 
 </div>
 </div>
@@ -13325,24 +13328,11 @@ $$ \frac{p_{te}(x_i^{tr})}{p_{tr}(x_i^{tr})}$$<p>Basically, <strong>the expectat
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Concept-drift">Concept drift<a class="anchor-link" href="#Concept-drift">&#182;</a></h2><p>Data generated by phenomena in <strong>nonstationary environments</strong> are characterized by:</p>
-<ul>
-<li>potentially unlimited size;</li>
-<li>sequential access to data samples (i.e. once an observation has been processed, it cannot be retrieved);</li>
-<li>unpredictable, dependent, and not identical distributed observations.</li>
-</ul>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Concept-drift">Concept drift<a class="anchor-link" href="#Concept-drift">&#182;</a></h2><p><strong>Learning from streams of nonstationary data</strong> lives under the following constraints[Sayed-Mouchaweh, 2016]:</p>
 <ul>
-<li><strong>Random access to observations</strong> is <strong>not feasible</strong>, or it has high costs (i.e. dataset not a priori available or too large).</li>
-<li><strong>Memory is small</strong> with respect to the size of data.</li>
-<li>Data <strong>distribution</strong> generating the data may <strong>evolve over time</strong>. This is also known as <strong>concept drift</strong>.</li>
+<li><strong>Random access to observations</strong> is <strong>not feasible</strong>, or it has high costs (i.e. dataset not a priori available or too large)</li>
+<li><strong>Memory is small</strong> with respect to the size of data</li>
+<li>Data <strong>distribution</strong> generating the data may <strong>evolve over time</strong>. This is also known as <strong>concept drift</strong></li>
 </ul>
 
 </div>
@@ -13376,7 +13366,7 @@ $$ \frac{p_{te}(x_i^{tr})}{p_{tr}(x_i^{tr})}$$<p>Basically, <strong>the expectat
 <ul>
 <li><strong>data availability</strong> - new data is received and eliminated from the window of interest as the stream evolves in time</li>
 <li><strong>model update</strong> - given the dynamics of the window evolution, the updates must be performed in a single pass</li>
-<li><strong>data size</strong> - precise models need large windows, yet updating the model for the entire window is costly in terms of latency and resource allocation (i.e. memory / disk).</li>
+<li><strong>data size</strong> - precise models need large windows, yet updating the model for the entire window is costly in terms of latency and resource allocation (i.e. memory / disk)</li>
 </ul>
 
 </div>
@@ -13404,9 +13394,9 @@ $$ \frac{p_{te}(x_i^{tr})}{p_{tr}(x_i^{tr})}$$<p>Basically, <strong>the expectat
 <h2 id="PCA">PCA<a class="anchor-link" href="#PCA">&#182;</a></h2><p><img src="basic-pca-problems.png" alt=""></p>
 <p>Tackle the <strong>inherent problems in traditional PCA</strong> impeding it to achieve <strong>low latency, high throughput and fixed memory/storage</strong>:</p>
 <ul>
-<li>Calculation of the <strong>mean and other descriptive statistics</strong> as the data is available.</li>
-<li><strong>Sorting the dominant eigenvalues</strong> in the rank update of the QR decomposition.</li>
-<li>Calculating the <strong>covariance matrix</strong>.</li>
+<li>Calculation of the <strong>mean and other descriptive statistics</strong> as the data is available</li>
+<li><strong>Sorting the dominant eigenvalues</strong> in the rank update of the QR decomposition</li>
+<li>Calculating the <strong>covariance matrix</strong></li>
 </ul>
 
 </div>
@@ -13470,7 +13460,7 @@ $$ \frac{p_{te}(x_i^{tr})}{p_{tr}(x_i^{tr})}$$<p>Basically, <strong>the expectat
 <h2 id="Example-implementation">Example implementation<a class="anchor-link" href="#Example-implementation">&#182;</a></h2><h3 id="Multi-class-classification-task-(fault-identification-in-predictive-maintenance-[Axenie-et-al.,-2019])">Multi-class classification task (fault identification in predictive maintenance [Axenie et al., 2019])<a class="anchor-link" href="#Multi-class-classification-task-(fault-identification-in-predictive-maintenance-[Axenie-et-al.,-2019])">&#182;</a></h3><p><strong>Goal</strong>: <strong>identify faults</strong> in the production line by <strong>querying the eigenvalues and eigenvectors</strong> to extract the normal and faulty operation configuration <strong>prior to a multi-class classifier</strong>.</p>
 <p>The datastream:</p>
 <ul>
-<li>2M incoming events at 40 kHz. </li>
+<li>2M incoming events at 40 kHz </li>
 <li>eigenvalues of the input $X$ are close to the class labels (i.e. $1, 2, ..., d$)</li>
 <li>eigenvectors are close to the canonical basis of $R^d$, where $d$ is the number of principal components to extract</li>
 <li>class number for the multi-class classification task (i.e. 10 classes, 9 faults and 1 normal).</li>
@@ -13522,6 +13512,14 @@ $$ \frac{p_{te}(x_i^{tr})}{p_{tr}(x_i^{tr})}$$<p>Basically, <strong>the expectat
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="PCA-vs.-Incremental-PCA-(Latency-&amp;-Throughput-Analysis)">PCA vs. Incremental PCA (Latency &amp; Throughput Analysis)<a class="anchor-link" href="#PCA-vs.-Incremental-PCA-(Latency-&amp;-Throughput-Analysis)">&#182;</a></h2><p><img src="performance-vals.png" alt=""></p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="PCA-vs.-Incremental-PCA-(Accuracy-Analysis)">PCA vs. Incremental PCA (Accuracy Analysis)<a class="anchor-link" href="#PCA-vs.-Incremental-PCA-(Accuracy-Analysis)">&#182;</a></h2><p><img src="accuracy-analysis.png" alt=""></p>
 
 </div>
@@ -13562,6 +13560,14 @@ $$ \frac{p_{te}(x_i^{tr})}{p_{tr}(x_i^{tr})}$$<p>Basically, <strong>the expectat
 <p>[Axenie et al., 2019] C. Axenie, Radu Tudoran, Stefano Bortoli, Mohamad Al Hajj Hassan, Alexander Wieder, Goetz Brasche, SPICE: Streaming PCA fault Identification and Classification Engine in Predictive Maintenance, IoT Stream Workshop, European Conf. on Machine Learning and Principles and Practice of Knowledge Discovery in Databases (ECML PKDD 2019).</p>
 <p>[Weng et al., 2003] J. Weng, Y. Zhang, and W.-S. Hwang, “Candid covariance-free incremental principal component analysis,” IEEE Transactions on Pattern Analysis and Machine Intelligence, vol. 25, no. 8, pp. 1034–1040, 2003.</p>
 <p>[Brand, 2002] M. Brand, “Incremental singular value decomposition of uncertain data with missing values.” in ECCV (1), ser. Lecture Notes in Computer Science, A. Heyden, G. Sparr, M. Nielsen, and P. Johansen, Eds., vol. 2350. Springer, 2002, pp. 707–720.</p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="moa.png" alt=""></p>
 
 </div>
 </div>
