@@ -13212,8 +13212,8 @@ a.anchor-link {
 <h1 id="Outline">Outline<a class="anchor-link" href="#Outline">&#182;</a></h1><ul>
 <li>Beyond i.i.d</li>
 <li>Stream Processing</li>
-<li>Incremental Learning</li>
-<li>Incremental Learning - Case Study</li>
+<li>Streaming Machine Learning</li>
+<li>Case study</li>
 <li>Conclusion</li>
 </ul>
 
@@ -13223,9 +13223,8 @@ a.anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<center>
-![](./big-data.png)
-    </center>
+<p><img src="./big-data.png" alt=""></p>
+
 </div>
 </div>
 </div></section></section><section><section>
@@ -13235,61 +13234,47 @@ a.anchor-link {
 <h1 id="Beyond-i.i.d">Beyond i.i.d<a class="anchor-link" href="#Beyond-i.i.d">&#182;</a></h1>
 </div>
 </div>
-</div></section><section>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Beyond-i.i.d">Beyond i.i.d<a class="anchor-link" href="#Beyond-i.i.d">&#182;</a></h1><ul>
-<li><strong>Traditional machine learning and data mining</strong> assume the current observed data and the future data are <strong>independent and identicically distributed (i.i.d)</strong>.</li>
+<li><strong>Traditional machine learning and data mining</strong> assume <strong>independent and identically distributed (i.i.d)</strong> of the data.</li>
 <li><strong>Data samples</strong>, in the <strong>past and current time</strong> do <strong>not affect</strong> the probability for <strong>future</strong> ones. </li>
 </ul>
 
 </div>
 </div>
-</div></section><section>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Beyond-i.i.d">Beyond i.i.d<a class="anchor-link" href="#Beyond-i.i.d">&#182;</a></h1><ul>
 <li>Data samples arrive <strong>continuously</strong>, <strong>online</strong> through unlimited <strong>streams</strong> often at <strong>high speed</strong> [Sayed-Mouchaweh, 2016].</li>
-<li>The <strong>process</strong> generating these data streams <strong>may evolve over time</strong> (i.e. nonstationarity).<center>
-![](noniid.png)
-</center></li>
+<li>The <strong>process</strong> generating these data streams <strong>may evolve over time</strong> (i.e. non-stationarity).</li>
 </ul>
+<p><img src="noniid.png" alt=""></p>
 
 </div>
 </div>
-</div></section><section>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Beyond-i.i.d">Beyond i.i.d<a class="anchor-link" href="#Beyond-i.i.d">&#182;</a></h1><p>In order to deal with evolving data streams, the <strong>model learnt from the streaming data</strong> must capture up-to-date <strong>trends</strong> and <strong>transient patterns</strong> in the stream.</p>
-<p><strong>Types of change in regression</strong></p>
-<center>
-![](changes-types-labels.png)
-</center>
+<p><strong>Types of change in regression</strong>
+<img src="changes-types-labels.png" alt=""></p>
+
 </div>
 </div>
-</div></section><section>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Beyond-i.i.d">Beyond i.i.d<a class="anchor-link" href="#Beyond-i.i.d">&#182;</a></h1><p><strong>Updating the model</strong> by incorporating new examples, we must also <strong>eliminate the effects of outdated examples</strong> representing outdated concepts through <strong>one-pass</strong>.</p>
 <p><strong>Typical changes in classification</strong></p>
-<p><a href="http://archive.ics.uci.edu/ml/datasets/Smartphone-Based+Recognition+of+Human+Activities+and+Postural+Transitions">Smartphone-Based Recognition of Human Activities and Postural Transitions Data Set</a></p>
-<center>
-![](changes-sample-labels.png)
-</center>
-</div>
-</div>
-</div></section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Beyond-i.i.d">Beyond i.i.d<a class="anchor-link" href="#Beyond-i.i.d">&#182;</a></h1><p>When <strong>training and test data</strong> follow <strong>different probability distributions</strong>, but the <strong>conditional distributions of output</strong> values given input points (i.e. <strong>target function</strong>) are <strong>unchanged</strong>, we face <strong>covariate shift</strong> [Sugiyama et al., 2012].</p>
-<center>
-![](covariate-shift.png)
-</center>
+<p><img src="changes-sample-labels.png" alt=""></p>
+
 </div>
 </div>
 </div></section></section><section><section>
@@ -13299,27 +13284,24 @@ a.anchor-link {
 <h1 id="Stream-Processing">Stream Processing<a class="anchor-link" href="#Stream-Processing">&#182;</a></h1>
 </div>
 </div>
-</div></section><section>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Stream-Processing">Stream Processing<a class="anchor-link" href="#Stream-Processing">&#182;</a></h1><p>Given a sequence of data (<strong>a stream</strong>), a series of operations (functions) is applied to each element in the stream, in a declarative way, we specify <strong>what we want to achieve and not how</strong> [Bifet, 2010].</p>
-<center>
-![](./stream-animation/streamanim.gif)
-</center>
+<h1 id="Stream-Processing">Stream Processing<a class="anchor-link" href="#Stream-Processing">&#182;</a></h1><p>Given a sequence of data (<strong>a stream</strong>), a series of operations (functions) is applied to each element in the stream, in a declarative way, we specify <strong>what we want to achieve and not how</strong> [Bifet, 2010].
+<img src="./stream-animation/streamanim.gif" alt=""></p>
+
 </div>
 </div>
-</div></section><section>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Stream-Processing">Stream Processing<a class="anchor-link" href="#Stream-Processing">&#182;</a></h1><p>Data <strong>Stream Processing</strong> is more challenging than <strong>batch processing</strong> [Bifet, 2010]:</p>
+<h1 id="Stream-Processing">Stream Processing<a class="anchor-link" href="#Stream-Processing">&#182;</a></h1><p>Data <strong>Stream Processing</strong> is more challenging than <strong>batch processing</strong> [Bifet, 2010] due to:</p>
 <ul>
-<li>The amount of data is <strong>extremely large</strong>, potentially infinite - <strong>impossible to store</strong> </li>
-<li>Only a <strong>small summary</strong> can be computed and stored, and the rest is discarded - unfeasible to go over it</li>
-<li>The <strong>speed of arrival is high</strong>, so that each datum has to be processed in <strong>real time</strong>, and then discarded</li>
-<li>The <strong>distribution generating the items</strong> can <strong>change over time</strong></li>
-<li><strong>Data from the past</strong> may become <strong>irrelevant (or even harmful)</strong> for the current summary</li>
+<li>the <strong>amount of data</strong></li>
+<li>the <strong>speed of arrival</strong></li>
+<li>the <strong>changes in the distribution generating the data</strong> </li>
 </ul>
 
 </div>
@@ -13328,79 +13310,43 @@ a.anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Incremental-Learning">Incremental Learning<a class="anchor-link" href="#Incremental-Learning">&#182;</a></h1>
-</div>
-</div>
-</div></section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Incremental-Learning">Incremental Learning<a class="anchor-link" href="#Incremental-Learning">&#182;</a></h1><p>Unlike <strong>conventional machine learning</strong>, the <strong>data flow</strong> targeted by <strong>incremental learning</strong> becomes available <strong>continuously</strong> over time and needs to be <strong>processed in a single pass</strong>.</p>
-<p>The inherent <strong>challenges</strong> here are:</p>
-<center>
-![](./streaming-challenges.png)
-</center>
+<h1 id="Streaming-Machine-Learning">Streaming Machine Learning<a class="anchor-link" href="#Streaming-Machine-Learning">&#182;</a></h1>
 </div>
 </div>
 </div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Incremental-Learning---Case-Study">Incremental Learning - Case Study<a class="anchor-link" href="#Incremental-Learning---Case-Study">&#182;</a></h1>
+<h1 id="Streaming-Machine-Learning">Streaming Machine Learning<a class="anchor-link" href="#Streaming-Machine-Learning">&#182;</a></h1><p>Unlike <strong>conventional machine learning</strong>, the <strong>data flow</strong> targeted by <strong>streaming machine learning</strong> becomes available <strong>continuously</strong> over time and needs to be <strong>processed, incrementally</strong> and <strong>in a single pass</strong>.</p>
+<p>The inherent <strong>challenges</strong> here are: 
+<img src="./streaming-challenges.png" alt=""></p>
+
 </div>
 </div>
 </div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Principal-Component-Analysis-(PCA)">Principal Component Analysis (PCA)<a class="anchor-link" href="#Principal-Component-Analysis-(PCA)">&#182;</a></h1>
+<h1 id="Case-Study">Case Study<a class="anchor-link" href="#Case-Study">&#182;</a></h1><h2 id="Principal-Component-Analysis-(PCA)">Principal Component Analysis (PCA)<a class="anchor-link" href="#Principal-Component-Analysis-(PCA)">&#182;</a></h2>
 </div>
 </div>
-</div></section><section>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="PCA">PCA<a class="anchor-link" href="#PCA">&#182;</a></h2><p><center>
-![](basic-pca-problems.png)
-</center>
-Tackle the <strong>inherent problems in traditional PCA</strong> impeding it to allow it to learn incrementally:</p>
+<h1 id="Case-Study">Case Study<a class="anchor-link" href="#Case-Study">&#182;</a></h1><h2 id="Principal-Component-Analysis-(PCA)">Principal Component Analysis (PCA)<a class="anchor-link" href="#Principal-Component-Analysis-(PCA)">&#182;</a></h2><p><img src="svd-graphic-simple.png" alt=""></p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Case-Study">Case Study<a class="anchor-link" href="#Case-Study">&#182;</a></h1><h2 id="Principal-Component-Analysis-(PCA)">Principal Component Analysis (PCA)<a class="anchor-link" href="#Principal-Component-Analysis-(PCA)">&#182;</a></h2><p>Tackle the <strong>inherent problems in traditional PCA</strong> impeding it to allow it to learn incrementally from streams:</p>
 <ul>
-<li>Calculation of the <strong>mean and other descriptive statistics</strong> as the data is available</li>
+<li>Calculation of the <strong>mean and other descriptive statistics</strong> as the data is available for estimating <strong>covariance matrix</strong></li>
 <li><strong>Sorting the dominant eigenvalues</strong> in the rank update of the QR decomposition</li>
-<li>Calculating the <strong>covariance matrix</strong></li>
 </ul>
-
-</div>
-</div>
-</div></section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Towards-incremental-PCA">Towards incremental PCA<a class="anchor-link" href="#Towards-incremental-PCA">&#182;</a></h2><p>Incremental <strong>calculation of the mean and other descriptive statistics</strong> on the datastream.</p>
-<center>
-![](streaming-mean.png)
-</center>
-</div>
-</div>
-</div></section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Towards-incremental-PCA">Towards incremental PCA<a class="anchor-link" href="#Towards-incremental-PCA">&#182;</a></h2><p>Incremental <strong>updates depending on counts (i.e. histogram)</strong>, which contain sorted eigenvalues.</p>
-<p><center>
-<img src="streaming-histogram.png" alt="">
-&lt;\center&gt;</p>
-
-</div>
-</div>
-</div></section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Towards-incremental-PCA">Towards incremental PCA<a class="anchor-link" href="#Towards-incremental-PCA">&#182;</a></h2><p>Incremental <strong>estimation of the covariance matrix</strong>, as <strong>neural synaptic weights</strong> converge to the eigenvectors (unique set of <strong>optimal weights</strong> and <strong>uncorrelated outputs</strong>) [Axenie et al., 2019].</p>
-<p><center>
-<img src="streaming-neural-covariance.png" alt="">
-&lt;\center&gt;</p>
 
 </div>
 </div>
@@ -13408,60 +13354,89 @@ Tackle the <strong>inherent problems in traditional PCA</strong> impeding it to 
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Real-world-application">Real-world application<a class="anchor-link" href="#Real-world-application">&#182;</a></h1><p><center>
-![](coke.png)
-</center></p>
-<h4 id="Multi-class-classification-task-(fault-identification-in-predictive-maintenance-[Axenie-et-al.,-ECML-PKDD-2019])">Multi-class classification task (fault identification in predictive maintenance [Axenie et al., ECML PKDD 2019])<a class="anchor-link" href="#Multi-class-classification-task-(fault-identification-in-predictive-maintenance-[Axenie-et-al.,-ECML-PKDD-2019])">&#182;</a></h4><p>Goal: identify faults in the production line by querying the eigenvalues and eigenvectors to extract the normal and faulty operation configuration prior to a multi-class classifier.</p>
-
+<h2 id="Towards-incremental-PCA">Towards incremental PCA<a class="anchor-link" href="#Towards-incremental-PCA">&#182;</a></h2>
 </div>
 </div>
-</div></section><section>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Real-world-application">Real-world application<a class="anchor-link" href="#Real-world-application">&#182;</a></h1><p>The datastream:</p>
+<h2 id="Towards-incremental-PCA">Towards incremental PCA<a class="anchor-link" href="#Towards-incremental-PCA">&#182;</a></h2><p>Incremental <strong>calculation of the mean and other descriptive statistics</strong> on the datastream.
+<img src="streaming-mean.png" alt=""></p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Towards-incremental-PCA">Towards incremental PCA<a class="anchor-link" href="#Towards-incremental-PCA">&#182;</a></h2><p>Incremental <strong>updates depending on counts (i.e. histogram)</strong>, which contain sorted eigenvalues.
+<img src="streaming-histogram.png" alt=""></p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Real-world-application">Real-world application<a class="anchor-link" href="#Real-world-application">&#182;</a></h1>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Real-world-application">Real-world application<a class="anchor-link" href="#Real-world-application">&#182;</a></h1><p><img src="coke.png" alt=""></p>
 <ul>
-<li>2M incoming events at 40 kHz.</li>
-<li>eigenvalues of the input $X$ are close to the class labels (i.e. $1, 2, ..., d$)</li>
-<li>eigenvectors are close to the canonical basis of $R^d$, where $d$ is the number of principal components to extract class number for the multi-class classification task (i.e. 10 classes, 9 faults and 1 normal).</li>
+<li><strong>1\$ billion of sales in the first 68 seconds</strong> compared with 90 seconds in 2018 and two minutes in 2017</li>
+<li><strong>544,000 sales per second</strong> compared with 256,000 in 2018</li>
 </ul>
 
 </div>
 </div>
-</div></section><section>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Performance-analysis:-Throughput">Performance analysis: Throughput<a class="anchor-link" href="#Performance-analysis:-Throughput">&#182;</a></h2><center>
-![](throughput-analysis.png)
-</center>
+<h1 id="Real-world-application">Real-world application<a class="anchor-link" href="#Real-world-application">&#182;</a></h1><h4 id="Multi-class-classification-task-(fraud-detection-in-bank-transactions)-[Axenie-et-al.,-ICMLA-2019])">Multi-class classification task (fraud detection in bank transactions) [Axenie et al., ICMLA 2019])<a class="anchor-link" href="#Multi-class-classification-task-(fraud-detection-in-bank-transactions)-[Axenie-et-al.,-ICMLA-2019])">&#182;</a></h4><p>Goal: <strong>identify frauds</strong> in the incoming bank transactions by <strong>querying the eigenvalues and eigenvectors</strong> in order to extract the <strong>normal and fraud transactions</strong> prior to a <strong>multi-class classifier</strong>.</p>
+
 </div>
 </div>
-</div></section><section>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Performance-analysis:-Latency">Performance analysis: Latency<a class="anchor-link" href="#Performance-analysis:-Latency">&#182;</a></h2><center>
-![](latency-analysis.png)
-</center>
+<h1 id="Real-world-application">Real-world application<a class="anchor-link" href="#Real-world-application">&#182;</a></h1><h4 id="Multi-class-classification-task-(fraud-detection-in-bank-transactions)-[Axenie-et-al.,-ICMLA-2019])">Multi-class classification task (fraud detection in bank transactions) [Axenie et al., ICMLA 2019])<a class="anchor-link" href="#Multi-class-classification-task-(fraud-detection-in-bank-transactions)-[Axenie-et-al.,-ICMLA-2019])">&#182;</a></h4><p>The datastream:</p>
+<ul>
+<li><strong>2M incoming events at 40 kHz</strong></li>
+<li>dataset has <strong>10 input features</strong> (e.g. transaction id, account id, transaction amount, transaction date, etc.)</li>
+<li><strong>eigenvalues</strong> of the input $X$ are close to the <strong>class labels</strong> (i.e. ”high-risk fraud”, ”recurrent fraud”, ”low-risk valid”, ”recurrent valid”).</li>
+</ul>
+
 </div>
 </div>
-</div></section><section>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Performance-analysis:-Overall">Performance analysis: Overall<a class="anchor-link" href="#Performance-analysis:-Overall">&#182;</a></h2><center>
-![](performance-vals.png)
-</center>
+<h1 id="Performance-of-Streaming-PCA">Performance of Streaming PCA<a class="anchor-link" href="#Performance-of-Streaming-PCA">&#182;</a></h1>
 </div>
 </div>
-</div>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Performance-analysis:-Accuracy">Performance analysis: Accuracy<a class="anchor-link" href="#Performance-analysis:-Accuracy">&#182;</a></h2><center>
-![](accuracy-analysis.png)
-</center>
+<h2 id="Performance-analysis:-Throughput">Performance analysis: Throughput<a class="anchor-link" href="#Performance-analysis:-Throughput">&#182;</a></h2><p><img src="throughput-analysis.png" alt=""></p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Performance-analysis">Performance analysis<a class="anchor-link" href="#Performance-analysis">&#182;</a></h2><h4 id="Latency-&amp;-throughput">Latency &amp; throughput<a class="anchor-link" href="#Latency-&amp;-throughput">&#182;</a></h4><p><img src="performance-vals.png" alt=""></p>
+<h4 id="Accuracy">Accuracy<a class="anchor-link" href="#Accuracy">&#182;</a></h4><p><img src="accuracy-analysis.png" alt=""></p>
+
 </div>
 </div>
 </div></section></section><section><section>
@@ -13471,26 +13446,26 @@ Tackle the <strong>inherent problems in traditional PCA</strong> impeding it to 
 <h2 id="Conclusions">Conclusions<a class="anchor-link" href="#Conclusions">&#182;</a></h2>
 </div>
 </div>
-</div></section><section>
+</div><div class="fragment">
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Conclusions">Conclusions<a class="anchor-link" href="#Conclusions">&#182;</a></h2><ul>
-<li>Incremental learning on data streams is a challenging problem</li>
-<li>Data size, data speed and the underlying changes in the data properties yield new learning models</li>
-<li>Model accuracy, processing latency and processing throughput are usually a trade-off</li>
+<ul>
+<li><strong>Streaming machine learning on data streams</strong> is a challenging problem.</li>
+<li><strong>Data size, data speed and the underlying changes</strong> in the data properties yield <strong>new learning models</strong>.</li>
+<li>Model <strong>accuracy, processing latency and processing throughput</strong> are usually a trade-off.</li>
 </ul>
 
 </div>
 </div>
-</div></section></section><section><section>
+</div></div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="References">References<a class="anchor-link" href="#References">&#182;</a></h1><p>[Bifet, 2010] Albert Bifet - Adaptive Stream Mining Pattern Learning and Mining from Evolving Data Streams, IOS Press, 2010.</p>
 <p>[Sugiyama et al., 2012] Masashi Sugiyama, Motoaki Kawanabe - Machine Learning in Non-Stationary Environments Introduction to Covariate Shift Adaptation-The MIT Press, 2012.</p>
 <p>[Sayed-Mouchaweh, 2016] Moamar Sayed-Mouchaweh - Learning from Data Streams in Dynamic Environments-Springer International Publishing, 2016.</p>
-<p>[Axenie et al., 2019] C. Axenie, Radu Tudoran, Stefano Bortoli, Mohamad Al Hajj Hassan, Alexander Wieder, Goetz Brasche, SPICE: Streaming PCA fault Identification and Classification Engine in Predictive Maintenance, IoT Stream Workshop, European Conf. on Machine Learning and Principles and Practice of Knowledge Discovery in Databases (ECML PKDD 2019).</p>
+<p>[Axenie et al., 2019] Axenie, C.; Tudoran, R.; Bortoli, S.; Hassan, M. A. H.; Carlos, S.; and Brasche, G. In 2019 18th IEEE International Conference on Machine Learning and Applications (ICMLA), 2019. IEEE.</p>
 
 </div>
 </div>
@@ -13506,9 +13481,8 @@ Tackle the <strong>inherent problems in traditional PCA</strong> impeding it to 
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Lecture-notebook-download">Lecture notebook download<a class="anchor-link" href="#Lecture-notebook-download">&#182;</a></h1><center>
-![](./qrcode.png)
-</center>
+<h1 id="Lecture-notebook-download">Lecture notebook download<a class="anchor-link" href="#Lecture-notebook-download">&#182;</a></h1><p><img src="./qrcode.png" alt=""></p>
+
 </div>
 </div>
 </div></section></section>
